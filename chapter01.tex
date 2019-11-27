@@ -7,9 +7,9 @@ The SimBad project is a set of applications developed to simulate such processes
 The process of simulation is as follows: it starts with a configuration file in which several dozen objects and parameters that determine the process of simulation. Around ~100 parameter that need to be set and adjusted in order to run simulation. Valid configuration is passed as input to SimBad-CLI which starts the simulation process. The output of CLI step is a .csv file which i turn is input of analyzer step. Form the .csv file, the analyzer step generates multiple .csv and .parquet files, which in turn are necessary to generate plots
 in report step.
 
-\begin{figure}[ht]
+\begin{figure}[h!]
 	\centering
-		\includegraphics[width=0.9\linewidth]{diagrams/simbad-data-flow.pdf}
+		\includegraphics[width=0.9\linewidth]{diagrams/simbad-data-flow.png}
 	\caption{Data flow between system components}
 	\label{fig:data-flow}
 \end{figure}
