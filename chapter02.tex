@@ -1,0 +1,9 @@
+\chapter{Existing system}
+\section{Components and its dependencies}
+\section{Making the system host agnostic}
+There are several ways to make computer program run on arbitrary platforms.
+\subsection{Installing all dependencies}
+The first way is to compile the program natively, and install its third-party dependencies on the host system. This approach has several issues, first it is necessary to write installers or maintain packages for every system that we'd want to run the program on. Another issue is that the already existing configurations and installed programs or shared libraries will often have different versions the the ones needed to run program have wrong versions, and changing those versions requires user intervention, and even it it succeeds it may break existing applications. The same issue extends to uninstalling - if user wants to remove program, it's hard to remove its dependencies. Worst case scenario is when program or dependency is not compatible with host and cannot be installed, for example windows programs on Linux. 
+\subsection{Virtual Machines}
+Another approach is virtualization. Image containing every dependency is created, and simulation process runs entirely on this image.
+\subsection{Docker}
