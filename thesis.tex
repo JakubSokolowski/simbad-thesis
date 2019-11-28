@@ -284,38 +284,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                  
 %% Definicje stopek i nagłówków
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                  
-\addtopsmarks{headings}{%
-\nouppercaseheads % added at the beginning
-}{%
-\createmark{chapter}{both}{shownumber}{}{. \space}
-%\createmark{chapter}{left}{shownumber}{}{. \space}
-\createmark{section}{right}{shownumber}{}{. \space}
-}%use the new settings
-
-\makeatletter
-\copypagestyle{outer}{headings}
-\makeoddhead{outer}{}{}{\small\itshape\rightmark}
-\makeevenhead{outer}{\small\itshape\leftmark}{}{}
-\makeoddfoot{outer}{\small\@author:~\@titleShort}{}{\small\thepage}
-\makeevenfoot{outer}{\small\thepage}{}{\small\@author:~\@title}
-\makeheadrule{outer}{\linewidth}{\normalrulethickness}
-\makefootrule{outer}{\linewidth}{\normalrulethickness}{2pt}
-\makeatother
-
-% fix plain
-\copypagestyle{plain}{headings} % overwrite plain with outer
-\makeoddhead{plain}{}{}{} % remove right header
-\makeevenhead{plain}{}{}{} % remove left header
-\makeevenfoot{plain}{}{}{}
-\makeoddfoot{plain}{}{}{}
-
-\copypagestyle{empty}{headings} % overwrite plain with outer
-\makeoddhead{empty}{}{}{} % remove right header
-\makeevenhead{empty}{}{}{} % remove left header
-\makeevenfoot{empty}{}{}{}
-\makeoddfoot{empty}{}{}{}
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Definicja strony tytułowej 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -482,7 +450,7 @@ SPECIALITY: & \@specjalnosc\\
 % \listoftables*
 
 % \include{acronyms}
-\chapterstyle{default}
+
 \include{chapter01}
 \include{chapter02}
 \include{chapter03}
