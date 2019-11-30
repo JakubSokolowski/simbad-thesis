@@ -18,6 +18,8 @@
 \usepackage{setspace}
 \usepackage{tabularx}
 \usepackage{color,calc}
+\usepackage{fancyvrb}
+\fvset{tabsize=2}
 %\usepackage{soul} % pakiet z komendami do podkreślania tekstu
 
 \usepackage{ebgaramond} % pakiet z czcionkami garamond, potrzebny tylko do strony tytułowej, musi wystąpić przed pakietem tgtermes
@@ -47,8 +49,7 @@
 
 \usepackage{listings} % pakiet do prezentacji kodu. 
 %Wcześniej był problem z polskimi znakami w otoczeniu lstlisting, stąd pozostawiono w komentarzu zastosowane wtedy rozwiązanie: 
-\lstset{literate=%-
-{ą}{{\k{a}}}1 {ć}{{\'c}}1 {ę}{{\k{e}}}1 {ł}{{\l{}}}1 {ń}{{\'n}}1 {ó}{{\'o}}1 {ś}{{\'s}}1 {ż}{{\.z}}1 {ź}{{\'z}}1 {Ą}{{\k{A}}}1 {Ć}{{\'C}}1 {Ę}{{\k{E}}}1 {Ł}{{\L{}}}1 {Ń}{{\'N}}1 {Ó}{{\'O}}1 {Ś}{{\'S}}1 {Ż}{{\.Z}}1 {Ź}{{\'Z}}1 }%{\ \ }{{\ }}1}
+\lstset{tabsize=2}
 
 % Choć możliwe jest zastosowanie różnych pakietów formatujących tabele, zaleca się tego nie robić.
 %\usepackage{longtable}

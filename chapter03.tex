@@ -1,5 +1,61 @@
 \chapter{Architecture}
 \section{Overview}
+The proposed system was designed using top-down approach. At the top there is the user, that needs some interface to interact with the system.. The current interface to each component is CLI that is not suited for non-technical user, so there is a strong inclination to build a graphical interface. The two main kinds are native application with GUI and WEB-GUI. Thought the GUI of operating system inside of a docker container can be shared to host through VPNCS server or Xauthority, it is much easier to host simple http server that exposes a port to host, and can be accessed through web browser. For this reason, WEB-GUI interface was chosen as the preferred method of interacting with user. This part of the proposed will be refereed in this thesis as SimBaD-Client.
+Another component that is necessary is a component that will connect all of the simulation pipeline steps together. This component should receive and execute commands from SimBad-Client. The use of web client narrows the possible methods of communications to network protocols and forces the component that receives commands to have web capabilities - to be a web server. Such component in this this will be referred to as SimBaD-Pipeline-Server. 
+There are several methods on server-client communications to choose from, in the following section the WebSocket, RESTful HTTP API and Graphql will be discussed.
+
+WebSocket is a communication protocol that provides full-duplex (data can be send both ways at the same time) communication over TCP connection. From client standpoint it provides server push capabilities - client can receive updates from server without explicitly asking for them. This makes it more suitable for real-time communication. Because WebSockets reuse single TCP connection, they have very low overhead - after initial handshake there is no need to send such data as request headers or cookies. This also leads to very high throughput. 
+
+The REST (Representational State Transfer) is an style of software architecture for creating web services. Rest puts some constraints such as  on a HTTP communication protocol. Using REST it is possible to define communication endpoint (an exposed interface) and operations, (usually CRUD) that can be made using that endpoint. The major benefit of REST is it allows to define very transparent interfaces. REST is a mature technology, and as such, it is very standardized with such standards as OpenApi and that helps with development and documentation. REST is most suitable when client-server interactions are less frequent. One of the principles of REST architecture is client-server split - REST defines a contract that both side of communication need to keep, thus allowing separate development of client and server. The obvious disadvantage of this approach is that it does not allow for real-time data to be passed to client. When clients needs to have updates from server, it has to continuously ask for it - such process is also called long polling. Operations can be defined as precisely as needed, but they nevertheless they need to be defined - it is common to get whole object to get information about its property which causes unnecessary data to be send, and to get only this property, separate endpoint needs to be defined. Such problem is also called over-fetching. The REST also suffers from the opposite of under-fetching, where to get necessary the client needs to make more than one request.
+
+GraphQL or Graph Query Language, was developed by Facebook, to address the under-fetching and over-fetching issues without without writing additional endpoints.  It is a relatively new technology, as the specification of it was open-sourced in 2015. From client side it allows to define a structure of required data and from server side it allows to return specified data. In contrast to REST, where the structure of the response is defined by endpoint, in Graphql the structure of response is created by GraphQL engine to mach the structure of query. It supports the usual read/write CRUD operations using mutations along with real-time data updates using subscriptions. The downside of this solution is that is a s it is relatiely new, its ecosystem and tools are fewer and less mature compared to REST. It is less suitable for simple APIs as it adds a lot of complexity.
+
+To chose one, it is necessary to analyze the needs of the system for sending data. The user should trigger simulation by sending configuration file, and this would be the main case where the system needs to handle user input. After that, the client needs to get update from server about simulation progress - this would be the most common operation. After simulation finishes, user needs to be able to view and save simulation results. Because the simulation can go on a very long time, there's no need for frequent updates, as changes to simulation state occur rarely. 
+\newpage
+\begin{lstlisting}[label=list:openapi-route,caption=The OpenAPI route definition for simulation start, basicstyle=\footnotesize\ttfamily]
+paths:
+  /api/simulation/start:
+    post:
+      tags:
+        - SIMULATION
+      operationId: startSimulation
+      description: Starts simulation process
+      requestBody:
+        content:
+          application:/json:
+            schema:
+              $ref: "#/components/schemas/StartSimulationRequest"
+      responses:
+        "202":
+          description: Request is accepted and command starts to execute
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SimulationStepInfo"
+        "400":
+          description: Simulation process is already running
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SimulationError"
+components:
+  schemas:
+    StartSimulationRequest:
+      type: object
+      properties:
+        configurationName:
+          description: The configuration file name
+          type: string
+        configuration:
+          description: The configuration file to be sent to CLI
+          type: string
+          format: binary
+      required:
+        - configuration
+        - configurationName
+\end{lstlisting}
+
+The first step of designing such pipeline system is to figure out how data should be passed between components. In its current state, the components do not pass whole files directly to each other, but rather pass the paths to files. The consequence of this is that each component needs to have access to filesystem where the file resides, and this in turn poses a question: how to give access to the same filesystem to multiple separate components? Docker solves such problem using Docker volumes.  Though the data in container can also be stored in the top read-write layer, such data is deleted when container is deleted. Docker volumes are a way to persist and share data between containers or between containers and host. The program running inside of container sees such volume as a folder, and can write and read data to it. Same volume can be used by multiple docker containers, solving the problem of shared filesystem.
 \begin{figure}[h!]
 	\centering
 		\includegraphics[width=0.9\linewidth]{diagrams/architecture-diagram.png}
