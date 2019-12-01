@@ -1,6 +1,12 @@
 \chapter{Architecture}
 \section{Overview}
 The proposed system was designed using top-down approach. At the top there is the user, that needs some interface to interact with the system.. The current interface to each component is CLI that is not suited for non-technical user, so there is a strong inclination to build a graphical interface. The two main kinds are native application with GUI and WEB-GUI. Thought the GUI of operating system inside of a docker container can be shared to host through VPNCS server or Xauthority, it is much easier to host simple http server that exposes a port to host, and can be accessed through web browser. For this reason, WEB-GUI interface was chosen as the preferred method of interacting with user. This part of the proposed will be refereed in this thesis as SimBaD-Client.
+\begin{figure}[h!]
+	\centering
+		\includegraphics[width=0.9\linewidth]{diagrams/arch1.png}
+	\caption{Architecture Overview: SimBaD Client}
+	\label{fig:arch1}
+\end{figure}
 Another component that is necessary is a component that will connect all of the simulation pipeline steps together. This component should receive and execute commands from SimBad-Client. The use of web client narrows the possible methods of communications to network protocols and forces the component that receives commands to have web capabilities - to be a web server. Such component in this this will be referred to as SimBaD-Pipeline-Server. 
 \subsubsection{Methods of communication}
 There are several methods on server-client communications to choose from, in the following section the WebSocket, RESTful HTTP API and Graphql will be discussed.
@@ -12,6 +18,12 @@ The REST (Representational State Transfer) is an style of software architecture 
 GraphQL or Graph Query Language, was developed by Facebook, to address the under-fetching and over-fetching issues without without writing additional endpoints.  It is a relatively new technology, as the specification of it was open-sourced in 2015. From client side it allows to define a structure of required data and from server side it allows to return specified data. In contrast to REST, where the structure of the response is defined by endpoint, in Graphql the structure of response is created by GraphQL engine to mach the structure of query. It supports the usual read/write CRUD operations using mutations along with real-time data updates using subscriptions. The downside of this solution is that is a s it is relatively new, its ecosystem and tools are fewer and less mature compared to REST. It is less suitable for simple APIs as it adds a lot of complexity.
 
 To chose one, it is necessary to analyze the needs of the system for sending data. The user should trigger simulation by sending configuration file, and this would be the main case where the system needs to handle user input. After that, the client needs to get update from server about simulation progress - this would be the most common operation. Because the simulation can go on a very long time, there's no need for frequent updates, as changes to simulation state occur rarely. When simulation step or simulation as a whole finishes, user needs to be able to view and download its results. The Websocket does not really add anything of value to the system, as data does not need to be real time, the updates are rare, and keeping single connection open for several days is not something one should do.  REST api is suited for above use-cases, and due to its standarization and tooling its the easiest one to develop with. The graphql api while promising, is a slight overkill for such simple system, as the problems that it solves are not as common.  This solution will become more viable with system grow. In conclusion, the rest api was chosen as preferred communication between system components. 
+\begin{figure}[h!]
+	\centering
+		\includegraphics[width=0.9\linewidth]{diagrams/arch2.png}
+	\caption{Architecture Overview: Client and server}
+	\label{fig:arch2}
+\end{figure}
 \newpage 
 All of the API interfaces defined in proposed system, were defined using the OpenApi standard. An example of such definition for operation that starts simulation process is visible on listing \ref{list:openapi-route}. OpenApi definition consist of route, operations allowed on this route, in this case "POST" operation, the request data and possible server responses - data and HTTP codes. Such definition defines a contract that both sides client and server must keep. To help with development, OpenApi allows to generate server and client code from such definition, which considerably speeds up the development process and prototyping. With code generator, using few commands one can generate client api code, server and mock server endpoints, and as long as the contract is kept, both sides of can be developed independent of each other.. The endpoints defined using this standard are very well documented, and easy to use for developers. Additional tools such as swagger editor can be used to create and visualize those definitions. 
 
@@ -57,7 +69,13 @@ components:
         - configuration
         - configurationName
 \end{lstlisting}
-The SimBaD-Client will communicate with SimBaD-Pipeline-Server through RESTapi. The pipeline server will execute simulations on client demand. The pipeline server must be able to programmatically connect all the simulation steps inputs and outputs together. Although each step can only execute one job, 
+The SimBaD-Client will communicate with SimBaD-Pipeline-Server through RESTapi. The pipeline server will execute simulations on client demand. The pipeline server must be able to programmatically connect all the simulation steps inputs and outputs together. Although each step can only execute one job.
+\begin{figure}[h!]
+	\centering
+		\includegraphics[width=0.9\linewidth]{diagrams/arch3.png}
+	\caption{Architecture Overview: Data flow}
+	\label{fig:arch3}
+\end{figure}
 The first step of designing such pipeline system is to figure out how data should be passed between components. In its current state, the components do not pass whole files directly to each other, but rather pass the paths to files. The consequence of this is that each component needs to have access to filesystem where the file resides, and this in turn poses a question: how to give access to the same filesystem to multiple separate components? Docker solves such problem using Docker volumes.  Though the data in container can also be stored in the top read-write layer, such data is deleted when container is deleted. Docker volumes are a way to persist and share data between containers or between containers and host. The program running inside of container sees such volume as a folder, and can write and read data to it. Same volume can be used by multiple docker containers, solving the problem of shared filesystem.
 \begin{figure}[h!]
 	\centering
