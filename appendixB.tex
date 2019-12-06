@@ -1,3 +1,15 @@
 \chapter{Installation instruction}
-\section{Single host}
-\section{Multiple hosts}
+\section{Linux}
+\section{Windows}
+\begin{enumerate}
+    \item Install Docker on Windows using following instructions
+    \item Enable hyper-v
+    \item In docker settings, enable the option to switch to linux containers
+    \item Optional - adjust how much resources can docker containers take
+    \item Download or clone repository
+    \item Open powershell inside the folder with cloned repository
+    \item Enter command docker-compose -f docker/prod-docker-compose.yml up. This will start the download process - this operation ma take aruound ~15 mins depending on the internet connection
+    \item Docker will prompt you to enter password for, to grant access to host filesystem
+\end{enumerate}
+\subsection{Single host}
+\subsection{Multiple hosts}
