@@ -1,3 +1,27 @@
 % Encoding: UTF-8
 
+@InProceedings{Felter2015,
+  author          = {Wes Felter and Alexandre Ferreira and Ram Rajamony and Juan Rubio},
+  title           = {An updated performance comparison of virtual machines and Linux containers},
+  year            = {2015},
+  pages           = {171--172},
+  publisher       = {IEEE},
+  abstract        = {Cloud computing makes extensive use of virtual machines because they permit workloads to be isolated from one another and for the resource usage to be somewhat controlled. In this paper, we explore the performance of traditional virtual machine (VM) deployments, and contrast them with the use of Linux containers. We use KVM as a representative hypervisor and Docker as a container manager. Our results show that containers result in equal or better performance than VMs in almost all cases. Both VMs and containers require tuning to support I/Ointensive applications. We also discuss the implications of our performance results for future cloud architectures.},
+  date            = {29-31 March 2015},
+  doi             = {10.1109/ISPASS.2015.7095802},
+  eventdate       = {29-31 March 2015},
+  eventtitleaddon = {Philadelphia, PA},
+  file            = {:https\://ieeexplore.ieee.org/stamp/stamp.jsp?tp=\&arnumber=7095802:PDF},
+  isbn            = {978-1-4799-1957-4},
+  journaltitle    = {2015 IEEE International Symposium on Performance Analysis of Systems and Software (ISPASS)},
+  keywords        = {Containers, Servers, Linux, Virtual machining, Random access memory, Hardware, Throughput},
+  location        = {Philadelphia, PA},
+}
+
+@Misc{simbad-cli,
+  author = {Tożański, T.},
+  note   = {\url{http://procesy.ue.wroc.pl/uploads/Marcin/BPMN.pdf} [dostęp dnia 20 czerwca 2015]},
+  title  = {SimBaD-CLI repository},
+}
+
 @Comment{jabref-meta: databaseType:bibtex;}
