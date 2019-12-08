@@ -18,4 +18,8 @@
   location        = {Philadelphia, PA},
 }
 
+@Manual{,
+  title = {D},
+}
+
 @Comment{jabref-meta: databaseType:bibtex;}
