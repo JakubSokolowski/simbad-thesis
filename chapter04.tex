@@ -242,6 +242,7 @@ def cli_step(self, artifact_id: int) -> int:
     ...
     return result.id
 \end{lstlisting}
+The SSH Executor is functionally identicall to HTTP Executor, the only difference that before the first connection, it opens SSH tunnel to remote server, using the SSHTunnelForwarder from sshtunnel python library. 
 \section{SimBaD-Analyzer-Server}
 Extracting component to separate docker container requires adding http layer on top of it, which will be used by the aforementioned Http and SSH TaskExecutors on the pipeline server. In the proposed system, this such layer, named SimBaD-Analyer-Server was added on top of the SimBaD-Analyzer component. 
 \subsection{Technology}
@@ -283,11 +284,15 @@ def start_analyzer(path: str) -> None:
     return
 \end{lstlisting}
 \section{Docker containers for components}
-When simulation systems grows in a decoupled way, the number of docker container to manage also grows. To aid managing these contaienrs, docker-compose was used. This tool can be used to define and manage application consisting of several components, placed on separate docker containers. The definition of application is placed in single docker-compose.yaml file. One can define services, shared volumes and networks in this file, and the start whole application using single commands. Contaienrs, also called services can be defined using existing Dockerfiles or downloaded from DockerHub. Additionally, the network adn volume definitions also can be placed in this file. In this section, the exact sepration of simulation system into docker containers will be discussed. 
-The first container that needs to be added is the contaienr with nginx that hosts the Simbad-Client code. To run, nginx needs configuration file. Adding files during using the volume tag in docker-compose, instead of copying it in the dockerfile, causes that docker contaier does not have to be rebuild each tiem the nginx configuration changes.
-The Simbad-Pipeline-Server component requires three docker containers to run. First container serves the http api that is used by the client. Second container runs the Celery worker, that executes scheduled task. Those two containers share the same image. The third component is a Redis image, that acts as a message broker for Celery. The last container is a contaienr for simbad-analyzer-server, containing the simbad-analyzer-server and h
-\newpage
-\begin{lstlisting}[label=list:sp-exec-local-use,caption=Use of LocalExecutor for SimBaD-CLI step, basicstyle=\footnotesize\ttfamily, numbers=left, escapechar=|]
+The first container that needs to be added is the contaienr with nginx that hosts the SimBaD-Client code. The Simbad-Pipeline-Server component requires three docker containers to run. First container serves the http api that is used by the client. Second container runs the Celery worker, that executes scheduled task. Those two containers share the same image. The third component is a Redis image, that acts as a message broker for Celery. The last container is a container for simbad-analyzer-server, containing the HTTP API extension and SimBaD-Analyzer. The diagram visualizing all of the containers can bee seen on the figure \ref{fig:docker-containers}.
+\begin{figure}[h!]
+	\centering
+		\includegraphics[width=0.9\linewidth]{diagrams/docker.png}
+	\caption{Diagram of docker-compose containers}
+	\label{fig:docker-containers}
+\end{figure}
+When simulation systems grows in a decoupled way, the number of docker container to manage also grows. To aid managing these containers, docker-compose was used. This tool can be used to define and manage application consisting of several components, placed on separate docker containers. The definition of application is placed in single docker-compose.yaml file. One can define services, shared volumes and networks in this file, and the start whole application using single commands. Contaienrs are build from images that can be defined using Dockerfiles or downloaded from DockerHub. Additionally, the network and volume definitions also can be placed in this file. Developing such system causes a need for two separate docker-compose files, one for the developer, that builds docker images from source, and one for user, so called, that pulls prebuild images from DockerHub. The docker-compose file that defines all of the simulation components using prebuild images is depicted on listing.  \ref{list:docker-compose}. 
+\begin{lstlisting}[label=list:docker-compose,caption=prod-docker-compose.yaml file, basicstyle=\footnotesize\ttfamily, numbers=left, escapechar=|]
 version: '3.4'
 services:
   client:
@@ -335,11 +340,8 @@ services:
     ports:
       - "6379:6379"
 \end{lstlisting}
-\begin{figure}[h!]
-	\centering
-		\includegraphics[width=0.9\linewidth]{diagrams/docker.png}
-	\caption{Diagram of docker-compose containers}
-	\label{fig:docker-containers}
-\end{figure}
+All of the simulation component containers are defined under the "services" tag, for example, analyzer-server tag defines configuration of SimBaD-Analyzer-Server component. The image key, under the analyzer-server, specifies from where to pull the prebuild image. The "command" key specifies what command needs to be executed after container is started. The env\_file key specified the path to file with environmental variables, that need to be set inside of container OS. This file is also primary method of configurating the system and will be described in more detail in section  \ref{sec:configuration}. Shared volumes and files that need to be placed inside container can be defined using the volmes key. First entry under that key is a shared volume, where the simulation files will reside. The " ../data:/usr/data" syntax, means that the local data folder will be mounted as /usr/data folder inside of the container. The "value:value" syntax in general can be interpreted as "HOST:CONTAINER". Similiary, second entry under this key copies local configuration file for log4j, that is used to configure logging in spark. The last key is ports which is used to define which ports need to be exposed in container. The syntax "5000:5000" means that the through port 5000 on docker host, it is possible to access port 5000 on docker container. Port 5000 on this container exposes the  Simbad-Analyzer-Server API and port 4000 is used to access SparkUI dashboard.
 \section{System Configuration}
-\label{sec:dockerconf}
+Two main sources of configuration are the docker-compose files and .env files. Form the compose files it is possible to specify ports and paths to data. The .env file contains the definition of environment variables that will be set in , that every containerfile is apa 
+\subsection{Default configuration}
+\label{sec:configuration}
