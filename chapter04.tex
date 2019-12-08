@@ -341,7 +341,44 @@ services:
       - "6379:6379"
 \end{lstlisting}
 All of the simulation component containers are defined under the "services" tag, for example, analyzer-server tag defines configuration of SimBaD-Analyzer-Server component. The image key, under the analyzer-server, specifies from where to pull the prebuild image. The "command" key specifies what command needs to be executed after container is started. The env\_file key specified the path to file with environmental variables, that need to be set inside of container OS. This file is also primary method of configurating the system and will be described in more detail in section  \ref{sec:configuration}. Shared volumes and files that need to be placed inside container can be defined using the volmes key. First entry under that key is a shared volume, where the simulation files will reside. The " ../data:/usr/data" syntax, means that the local data folder will be mounted as /usr/data folder inside of the container. The "value:value" syntax in general can be interpreted as "HOST:CONTAINER". Similiary, second entry under this key copies local configuration file for log4j, that is used to configure logging in spark. The last key is ports which is used to define which ports need to be exposed in container. The syntax "5000:5000" means that the through port 5000 on docker host, it is possible to access port 5000 on docker container. Port 5000 on this container exposes the  Simbad-Analyzer-Server API and port 4000 is used to access SparkUI dashboard.
+Using the development version of the docker-compse.yaml file developer can easily make changes to system component, build the images from source, and publish them on DockerHub.
 \section{System Configuration}
-Two main sources of configuration are the docker-compose files and .env files. Form the compose files it is possible to specify ports and paths to data. The .env file contains the definition of environment variables that will be set in , that every containerfile is apa 
-\subsection{Default configuration}
+Two main sources of configuration are the docker-compose files and .env files. Form the compose files it is possible to specify ports and paths to data. The .env file contains the definition of environment variables that will be set in , that every container is passed to. In those files, there are more adavanced settings, mostly for power users, such as which executor will run which task, the updates polling period, or external drives to be mounted via sshfs.
+\subsection{Remote host}
+To enable running components on separate machines, docker configuration most be modified. Example steup for such configuration could be Simbad-Analyzer-Server running on one linux machine, and all other components running on the other.
+For the sake of example, those two machiens will be on the same network, the SAS at 192.168.0.32 and the rest at 192.168.0.31. First step to enable that, is to extract the SAS container to a separate docker compose file, visible on the listing \ref{list:docker-split}. The entry under the analyzer-server key in original docker-compose file should be removed, to prevent running redundant containers.
+\begin{lstlisting}[label=list:docker-split,caption=prod-docker-compose.yaml file, basicstyle=\footnotesize\ttfamily, numbers=left, escapechar=|]
+version: '3.4'
+services:
+  analyzer-server:
+    image: jsokolowski/simbad-analyzer-server
+    container_name: simbad-analyzer-server
+    command: python3 app.py --port 5000 --debug
+    env_file:
+      - ./docker.env
+    volumes:
+      - sshfs:/usr/data
+      - ./log4j.properties:/opt/spark-2.4.3-bin-hadoop2.7/conf/log4j.properties
+    ports:
+      - "5000:5000"
+      - "4040:4040"
+    network_mode:
+      host
+volumes:
+    sshfs:
+      name: sshfs
+      driver: vieux/sshfs:latest
+      driver_opts:
+        sshcmd: "user@192.168.0.31:/home/user/simbad/data"
+        password: "password"
+\end{lstlisting}
+The network mode is set to host, to make the container available from outside. It's worth noting, that this option works only on docker for linux. Additionally to make the filesystem available to both machines, the SAS must mount the filesystem of other machine, at the same mountpoint. This is done through docker sshfs docker extension. First, in the root volume key, the ssfs drive is defined, and then, it is mounted in the volume key under analuzer\_server. Second file that needs to be edited is the docker environment file. In this file the address and port to SAS must be entered, and the analyzer TaskExecutor must be set to HTTP. Fragment of such env file can be seen on the listing \ref{list:docker-split-env}
+\begin{lstlisting}[label=list:docker-split-env,caption=prod-docker-compose.yaml file, basicstyle=\footnotesize\ttfamily, numbers=left, escapechar=|]
+...
+SIMBAD_ANALYZER_HOST="192.168.0.32"
+SIMBAD_ANALYZER_PORT="5000"
+SIMBAD_ANALYZER_EXECUTOR=HTTP
+...
+\end{lstlisting}
+To start the system, user would need to enter docker-compose up on both machines.
 \label{sec:configuration}
