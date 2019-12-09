@@ -57,14 +57,6 @@
   isbn      = {0982219199, 9780982219195},
 }
 
-@Book{Wilson2004,
-  author    = {Wilson, Phil},
-  publisher = {APress},
-  title     = {The Definitive Guide to Windows Installer},
-  year      = {2004},
-  isbn      = {1590592972},
-}
-
 @Book{MacKenzie2015,
   author    = {MacKenzie, David and Elliston, Ben and Demaille, Akim},
   publisher = {Samurai Media Limited},
@@ -97,7 +89,7 @@
   year   = {2019},
 }
 
-@Misc{,
+@Misc{Alpine,
   author = {Alpine},
   note   = {\url{https://hub.docker.com/_/alpine}[Retrieved December 8, 2019]},
   title  = {Alpine Linux Docker Image on DockerHub},
@@ -118,7 +110,7 @@
   year   = {2019},
 }
 
-@Misc{DockerOverview,
+@Misc{DockerHub,
   author = {Docker},
   note   = {\url{https://docs.docker.com/docker-hub/}[Retrieved December 8, 2019]},
   title  = {Docker Hub Quickstart},
@@ -139,17 +131,147 @@
   year   = {2019},
 }
 
-@Misc{SwaggerEditor,
+@Misc{OpenApi,
   author = {Swagger},
   note   = {\url{https://swagger.io/docs/specification/about/}[Retrieved December 8, 2019]},
   title  = {Overview of OpenAPI Specification},
   year   = {2019},
 }
 
-@Misc{OpenAPI,
+@Misc{SwaggerEditor,
   author = {Swagger},
   note   = {\url{https://editor.swagger.io/}[Retrieved December 8, 2019]},
-  title  = {Overview of OpenAPI Specification},
+  title  = {Swagger Editor for Visualization of OpenAPI Specifications},
+  year   = {2019},
+}
+
+@Misc{AngualrUniversity,
+  author = {Swagger},
+  note   = {\url{https://github.com/swagger-api/swagger-codegen#overview}[Retrieved December 8, 2019]},
+  title  = {Swagger Codegen Overview and Supported Languages/Frameworks},
+  year   = {2019},
+}
+
+@Misc{AngularUniWhyStore,
+  author = {Angular-University},
+  note   = {\url{https://blog.angular-university.io/angular-2-redux-ngrx-rxjs/}[Retrieved December 8, 2019]},
+  title  = {Angular Service Layers: Redux, RxJs and Ngrx Store - When to Use a Store And Why?},
+  year   = {2019},
+}
+
+@Misc{NxCLI,
+  author = {Nx},
+  note   = {\url{https://nx.dev/angular/getting-started/nx-and-cli#nx-and-angular-cli}[Retrieved December 8, 2019]},
+  title  = {Nx and Angular CLI},
+  year   = {2019},
+}
+
+@Misc{RxjsObservable,
+  author = {NgRx},
+  note   = {\url{https://ngrx.io/docs}[Retrieved December 8, 2019]},
+  title  = {NgRx Documentation},
+  year   = {2019},
+}
+
+@Misc{MonorepoSavkin,
+  author = {Victor Savkin},
+  note   = {\url{https://ngrx.io/docs}[Retrieved December 8, 2019]},
+  title  = {Misconceptions about Monorepos},
+  year   = {2019},
+}
+
+@Book{Wilson2004,
+  author    = {Wilson, Phil},
+  publisher = {APress},
+  title     = {The Definitive Guide to Windows Installer},
+  year      = {2004},
+  isbn      = {1590592972},
+}
+
+@Misc{CeleryCanvas,
+  author = {CeleryProject},
+  note   = {\url{https://docs.celeryproject.org/en/latest/userguide/canvas.html#the-primitives}[Retrieved December 8, 2019]},
+  title  = {Canvas: Designing Work-flows},
+  year   = {2019},
+}
+
+@Misc{CeleryRouting,
+  author = {CeleryProject},
+  note   = {\url{https://docs.celeryproject.org/en/latest/userguide/routing.html}[Retrieved December 8, 2019]},
+  title  = {Routing Taks in Celery},
+  year   = {2019},
+}
+
+@Misc{GraphQL,
+  author = {Facebook},
+  note   = {\url{https://engineering.fb.com/core-data/graphql-a-data-query-language/}[Retrieved December 8, 2019]},
+  title  = {GraphQL: A data query language},
+  year   = {2019},
+}
+
+@Misc{Fielding2014,
+  author       = {Roy T. Fielding and Julian Reschke},
+  howpublished = {RFC 7231},
+  month        = jun,
+  title        = {{Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content}},
+  year         = {2014},
+  abstract     = {The Hypertext Transfer Protocol (HTTP) is a stateless \textbackslash{}\%application- level protocol for distributed, collaborative, hypertext information systems. This document defines the semantics of HTTP/1.1 messages, as expressed by request methods, request header fields, response status codes, and response header fields, along with the payload of messages (metadata and body content) and mechanisms for content negotiation.},
+  doi          = {10.17487/RFC7231},
+  number       = {7231},
+  pagetotal    = {101},
+  publisher    = {RFC Editor},
+  series       = {Request for Comments},
+  url          = {https://rfc-editor.org/rfc/rfc7231.txt},
+}
+
+@Misc{Melnikov2011,
+  author       = {Alexey Melnikov and Ian Fette},
+  howpublished = {RFC 6455},
+  month        = dec,
+  title        = {{The WebSocket Protocol}},
+  year         = {2011},
+  abstract     = {The WebSocket Protocol enables two-way communication between a client running untrusted code in a controlled environment to a remote host that has opted-in to communications from that code. The security model used for this is the origin-based security model commonly used by web browsers. The protocol consists of an opening handshake followed by basic message framing, layered over TCP. The goal of this technology is to provide a mechanism for browser-based applications that need two-way communication with servers that does not rely on opening multiple HTTP connections (e.g., using XMLHttpRequest or \textless{}iframe\textgreater{}s and long polling). {[}STANDARDS-TRACK{]}},
+  doi          = {10.17487/RFC6455},
+  number       = {6455},
+  pagetotal    = {71},
+  publisher    = {RFC Editor},
+  series       = {Request for Comments},
+  url          = {https://rfc-editor.org/rfc/rfc6455.txt},
+}
+
+@Misc{GraphQlNoNeed,
+  author = {Phil Sturgeon},
+  month  = apr,
+  note   = {\url{https://blog.runscope.com/posts/you-might-not-need-graphql}[Retrieved December 8, 2019]},
+  title  = {You Might Not Need GraphQL},
+  year   = {2017},
+}
+
+@Misc{NgRxStoreDocs,
+  author = {NgRx},
+  note   = {\url{https://ngrx.io/guide/store}[Retrieved December 8, 2019]},
+  title  = {NgRx Store Key Concepts},
+  year   = {2019},
+}
+
+@Misc{NgrxDocs,
+  author = {RxJS},
+  note   = {\url{https://rxjs-dev.firebaseapp.com/guide/subscription}[Retrieved December 8, 2019]},
+  title  = {Rxjs Documentation: Subscription},
+  year   = {2019},
+}
+
+@Misc{NgrxDocs,
+  author = {RxJS},
+  note   = {\url{https://rxjs-dev.firebaseapp.com/guide/observable}[Retrieved December 8, 2019]},
+  title  = {Rxjs Documentation: Observable},
+  year   = {2019},
+}
+
+@Misc{NgrxDocs,
+  author = {RxJS},
+  note   = {\url{https://rxjs-dev.firebaseapp.com/guide/operators}[Retrieved December 8, 2019]},
+  title  = {Rxjs Documentation: Operators},
   year   = {2019},
 }
 
