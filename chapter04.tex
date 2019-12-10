@@ -240,7 +240,7 @@ def cli_step(self, artifact_id: int) -> int:
     ...
     return result.id
 \end{lstlisting}
-The \textit{SSHExecutor} is functionally identical to \textit{HTTPExecutor}, the only difference that before the first connection, it opens \textit{SSH} tunnel to remote server, using the \textit{SSHTunnelForwarder} from \texttt{sshtunnel} python library. \cite{SSHtunnel} 
+The \textit{SSHExecutor} is functionally identical to \textit{HTTPExecutor}, the only difference that before the first connection, it opens \textit{SSH} tunnel to remote server, using the \textit{SSHTunnelForwarder} from \texttt{sshtunnel} python library.
 \section{SimBaD-Analyzer-Server}
 Extracting component to separate docker container requires adding http layer on top of it, which will be used by the aforementioned \textit{HTTP} and \textit{SSH} \textit{TaskExecutors} on the \textit{SPS}. In the proposed system, this such layer, named \textit{SimBaD-Analyzer-Server} (\textit{SAS}) was added on top of the \textit{SimBaD-Analyzer} component. 
 \subsection{Technology}
