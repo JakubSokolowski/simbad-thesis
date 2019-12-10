@@ -1,4 +1,5 @@
 \chapter*{Configuration Options}\mbox{}\pdfbookmark[0]{Configuration Options}{Configuration Options.1}
+\label{appendix:configuration}
 The Environment Variables below can be adjusted in \textit{docker.env} file, and will set in each container in docker-compse.yaml, where the path to docker.env is under the \textit{env\_file} key, as shown on the line \ref{line:env} in the listing \ref{list:env} below.
 \begin{lstlisting}[label=list:env,caption=Example of passing \textit{docker.env} file to the container, basicstyle=\footnotesize\ttfamily, escapechar=|, numbers=left]
 services:
@@ -34,6 +35,8 @@ services:
     
     \item 
         [SIMBAD\_ANALYZER\_EXECUTOR] - The kind of executor \textit{SimBaD-Analyzer}, default is \textit{HTTP}, can be \textit{HTTP, SSH}
+     \item 
+        [SIMBAD\_ANALYZER\_POLLING\_PERIOD] - How often \textit{TaskExecutor} asks for progress updates from \textit{SimBaD-Analyzer} in seconds, default is \textit{5}
     
     \item 
         [SIMBAD\_SSHFS\_PATH] - The path inside the host to mounted \textit{sshfs} drive
