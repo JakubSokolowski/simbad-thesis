@@ -82,10 +82,10 @@
   year   = {2018},
 }
 
-@Misc{Dockerfile,
+@Misc{DockerfileIssue,
   author = {Docker},
   note   = {\url{https://docs.docker.com/engine/reference/builder/}[Retrieved December 8, 2019]},
-  title  = {Dockerfile Reference},
+  title  = {Github Issue concerning "host.docker.internal"},
   year   = {2019},
 }
 
@@ -110,10 +110,10 @@
   year   = {2019},
 }
 
-@Misc{DockerHub,
-  author = {Docker},
-  note   = {\url{https://docs.docker.com/docker-hub/}[Retrieved December 8, 2019]},
-  title  = {Docker Hub Quickstart},
+@Misc{SSHtunnel,
+  author = {Pahaz Blinov},
+  note   = {\url{https://sshtunnel.readthedocs.io/en/latest/}[Retrieved December 8, 2019]},
+  title  = {SSHTunnel documentation},
   year   = {2019},
 }
 
@@ -145,7 +145,7 @@
   year   = {2019},
 }
 
-@Misc{AngualrUniversity,
+@Misc{SwaggerCodegen,
   author = {Swagger},
   note   = {\url{https://github.com/swagger-api/swagger-codegen#overview}[Retrieved December 8, 2019]},
   title  = {Swagger Codegen Overview and Supported Languages/Frameworks},
@@ -254,24 +254,59 @@
   year   = {2019},
 }
 
-@Misc{NgrxDocs,
-  author = {RxJS},
-  note   = {\url{https://rxjs-dev.firebaseapp.com/guide/subscription}[Retrieved December 8, 2019]},
-  title  = {Rxjs Documentation: Subscription},
-  year   = {2019},
-}
-
-@Misc{NgrxDocs,
+@Misc{RxJSObservable,
   author = {RxJS},
   note   = {\url{https://rxjs-dev.firebaseapp.com/guide/observable}[Retrieved December 8, 2019]},
   title  = {Rxjs Documentation: Observable},
   year   = {2019},
 }
 
-@Misc{NgrxDocs,
+@Misc{RxJSSource,
+  author = {RxJS},
+  note   = {\url{https://github.com/ReactiveX/rxjs}[Retrieved December 8, 2019]},
+  title  = {Rxjs Source Code},
+  year   = {2019},
+}
+
+@Misc{DockerGUI,
+  author = {Fabio Rehm},
+  note   = {\url{http://fabiorehm.com/blog/2014/09/11/running-gui-apps-with-docker/}[Retrieved December 8, 2019]},
+  title  = {Running GUI apps with Docker},
+  year   = {2019},
+}
+
+@Misc{DockerHub,
+  author = {Docker},
+  note   = {\url{https://docs.docker.com/docker-hub/}[Retrieved December 8, 2019]},
+  title  = {Docker Hub Quickstart},
+  year   = {2019},
+}
+
+@Misc{DockerStorage,
+  author = {Docker},
+  note   = {\url{https://docs.docker.com/storage/storagedriver/}[Retrieved December 8, 2019]},
+  title  = {Docker Storage Drivers},
+  year   = {2019},
+}
+
+@Misc{RxJSOperators,
   author = {RxJS},
   note   = {\url{https://rxjs-dev.firebaseapp.com/guide/operators}[Retrieved December 8, 2019]},
   title  = {Rxjs Documentation: Operators},
+  year   = {2019},
+}
+
+@Misc{Dockerfile,
+  author = {Docker},
+  note   = {\url{https://docs.docker.com/engine/reference/builder/}[Retrieved December 8, 2019]},
+  title  = {Dockerfile Reference},
+  year   = {2019},
+}
+
+@Misc{RxJSSub,
+  author = {RxJS},
+  note   = {\url{https://rxjs-dev.firebaseapp.com/guide/subscription}[Retrieved December 8, 2019]},
+  title  = {Rxjs Documentation: Subscription},
   year   = {2019},
 }
 
