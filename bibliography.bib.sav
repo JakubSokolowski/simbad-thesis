@@ -1,34 +1,9 @@
 % Encoding: UTF-8
 
-@InProceedings{Felter2015,
-  author          = {Wes Felter and Alexandre Ferreira and Ram Rajamony and Juan Rubio},
-  title           = {An updated performance comparison of virtual machines and Linux containers},
-  year            = {2015},
-  pages           = {171--172},
-  publisher       = {IEEE},
-  abstract        = {Cloud computing makes extensive use of virtual machines because they permit workloads to be isolated from one another and for the resource usage to be somewhat controlled. In this paper, we explore the performance of traditional virtual machine (VM) deployments, and contrast them with the use of Linux containers. We use KVM as a representative hypervisor and Docker as a container manager. Our results show that containers result in equal or better performance than VMs in almost all cases. Both VMs and containers require tuning to support I/Ointensive applications. We also discuss the implications of our performance results for future cloud architectures.},
-  date            = {29-31 March 2015},
-  doi             = {10.1109/ISPASS.2015.7095802},
-  eventdate       = {29-31 March 2015},
-  eventtitleaddon = {Philadelphia, PA},
-  file            = {:https\://ieeexplore.ieee.org/stamp/stamp.jsp?tp=\&arnumber=7095802:PDF},
-  isbn            = {978-1-4799-1957-4},
-  journaltitle    = {2015 IEEE International Symposium on Performance Analysis of Systems and Software (ISPASS)},
-  keywords        = {Containers, Servers, Linux, Virtual machining, Random access memory, Hardware, Throughput},
-  location        = {Philadelphia, PA},
-}
-
 @Misc{TozanskiCLI,
   author = {Tomasz Tożański},
   note   = {\url{https://github.com/biel-wro/SimBaD} [Retrieved December 8, 2019]},
   title  = {SimBaD-CLI source code},
-  year   = {2019},
-}
-
-@Misc{TozanskiWCSS,
-  author = {Tomasz Tożański},
-  note   = {\url{https://github.com/tozanski/SimBaD-analyzer/tree/master/wcss-scripts} [Retrieved December 8, 2019]},
-  title  = {WCSS scripts for SimBaD project},
   year   = {2019},
 }
 
@@ -82,14 +57,7 @@
   year   = {2018},
 }
 
-@Misc{DockerHostInternal,
-  author = {Docker},
-  note   = {\url{https://docs.docker.com/engine/reference/builder/}[Retrieved December 8, 2019]},
-  title  = {Github Issue concerning "host.docker.internal"},
-  year   = {2019},
-}
-
-@Misc{Alpine,
+@Misc{FlaskDjango,
   author = {Alpine},
   note   = {\url{https://hub.docker.com/_/alpine}[Retrieved December 8, 2019]},
   title  = {Alpine Linux Docker Image on DockerHub},
@@ -114,20 +82,6 @@
   author = {Pahaz Blinov},
   note   = {\url{https://sshtunnel.readthedocs.io/en/latest/}[Retrieved December 8, 2019]},
   title  = {SSHTunnel documentation},
-  year   = {2019},
-}
-
-@Misc{DockerOverview,
-  author = {Docker},
-  note   = {\url{https://docs.docker.com/engine/docker-overview/}[Retrieved December 8, 2019]},
-  title  = {Docker overview},
-  year   = {2019},
-}
-
-@Misc{DockerTag,
-  author = {Docker},
-  note   = {\url{https://docs.docker.com/engine/reference/commandline/tag/}[Retrieved December 8, 2019]},
-  title  = {Docker Tags Reference},
   year   = {2019},
 }
 
@@ -166,13 +120,6 @@
   year   = {2019},
 }
 
-@Misc{NgRx,
-  author = {NgRx},
-  note   = {\url{https://ngrx.io/docs}[Retrieved December 8, 2019]},
-  title  = {NgRx Documentation},
-  year   = {2019},
-}
-
 @Misc{MonorepoSavkin,
   author = {Victor Savkin},
   note   = {\url{https://ngrx.io/docs}[Retrieved December 8, 2019]},
@@ -189,16 +136,9 @@
 }
 
 @Misc{CeleryCanvas,
-  author = {CeleryProject},
+  author = {Celery},
   note   = {\url{https://docs.celeryproject.org/en/latest/userguide/canvas.html#the-primitives}[Retrieved December 8, 2019]},
   title  = {Canvas: Designing Work-flows},
-  year   = {2019},
-}
-
-@Misc{CeleryRouting,
-  author = {CeleryProject},
-  note   = {\url{https://docs.celeryproject.org/en/latest/userguide/routing.html}[Retrieved December 8, 2019]},
-  title  = {Routing Taks in Celery},
   year   = {2019},
 }
 
@@ -247,6 +187,91 @@
   year   = {2017},
 }
 
+@Misc{DockerGUI,
+  author = {Fabio Rehm},
+  note   = {\url{http://fabiorehm.com/blog/2014/09/11/running-gui-apps-with-docker/}[Retrieved December 8, 2019]},
+  title  = {Running GUI apps with Docker},
+  year   = {2019},
+}
+
+@Misc{Dockerfile,
+  author = {Docker},
+  note   = {\url{https://docs.docker.com/engine/reference/builder/}[Retrieved December 8, 2019]},
+  title  = {Dockerfile Reference},
+  year   = {2019},
+}
+
+@Misc{RxJSSub,
+  author = {RxJS},
+  note   = {\url{https://rxjs-dev.firebaseapp.com/guide/subscription}[Retrieved December 8, 2019]},
+  title  = {Rxjs Documentation: Subscription},
+  year   = {2019},
+}
+
+@Misc{DockerfileIssue,
+  author = {Docker},
+  note   = {\url{https://docs.docker.com/engine/reference/builder/}[Retrieved December 8, 2019]},
+  title  = {Github Issue concerning "host.docker.internal"},
+  year   = {2019},
+}
+
+@Misc{AngularPassingData,
+  author = {Angular},
+  note   = {\url{https://angular.io/guide/component-interaction}[Retrieved December 8, 2019]},
+  title  = {Component Interaction in Angular},
+  year   = {2019},
+}
+
+@Misc{FlaskDjango,
+  author = {Mindfire},
+  month  = may,
+  note   = {\url{http://www.mindfiresolutions.com/blog/2018/05/flask-vs-django/}[Retrieved December 8, 2019]},
+  title  = {Comparision of Flask and Django Python Web Frameworks},
+  year   = {2018},
+}
+
+@Misc{CeleryRouting,
+  author = {Celery},
+  note   = {\url{https://docs.celeryproject.org/en/latest/userguide/routing.html}[Retrieved December 8, 2019]},
+  title  = {Routing Taks in Celery},
+  year   = {2019},
+}
+
+@Misc{TozanskiWCSS,
+  author = {Tomasz Tożański},
+  note   = {\url{https://github.com/tozanski/SimBaD-analyzer/tree/master/wcss-scripts} [Retrieved December 8, 2019]},
+  title  = {WCSS scripts for SimBaD project},
+  year   = {2019},
+}
+
+@Misc{DockerOverview,
+  author = {Docker},
+  note   = {\url{https://docs.docker.com/engine/docker-overview/}[Retrieved December 8, 2019]},
+  title  = {Docker overview},
+  year   = {2019},
+}
+
+@Misc{DockerTag,
+  author = {Docker},
+  note   = {\url{https://docs.docker.com/engine/reference/commandline/tag/}[Retrieved December 8, 2019]},
+  title  = {Docker Tags Reference},
+  year   = {2019},
+}
+
+@Misc{NgRxDocs,
+  author = {NgRx},
+  note   = {\url{https://ngrx.io/docs}[Retrieved December 8, 2019]},
+  title  = {NgRx Documentation},
+  year   = {2019},
+}
+
+@Misc{CeleryBrokers,
+  author = {Celery},
+  note   = {\url{http://docs.celeryproject.org/en/latest/getting-started/brokers/index.html}[Retrieved December 8, 2019]},
+  title  = {Celery Brokers},
+  year   = {2019},
+}
+
 @Misc{NgRxStoreDocs,
   author = {NgRx},
   note   = {\url{https://ngrx.io/guide/store}[Retrieved December 8, 2019]},
@@ -265,13 +290,6 @@
   author = {RxJS},
   note   = {\url{https://github.com/ReactiveX/rxjs}[Retrieved December 8, 2019]},
   title  = {Rxjs Source Code},
-  year   = {2019},
-}
-
-@Misc{DockerGUI,
-  author = {Fabio Rehm},
-  note   = {\url{http://fabiorehm.com/blog/2014/09/11/running-gui-apps-with-docker/}[Retrieved December 8, 2019]},
-  title  = {Running GUI apps with Docker},
   year   = {2019},
 }
 
@@ -296,17 +314,10 @@
   year   = {2019},
 }
 
-@Misc{Dockerfile,
-  author = {Docker},
-  note   = {\url{https://docs.docker.com/engine/reference/builder/}[Retrieved December 8, 2019]},
-  title  = {Dockerfile Reference},
-  year   = {2019},
-}
-
-@Misc{RxJSSub,
-  author = {RxJS},
-  note   = {\url{https://rxjs-dev.firebaseapp.com/guide/subscription}[Retrieved December 8, 2019]},
-  title  = {Rxjs Documentation: Subscription},
+@Misc{C,
+  author = {Celery},
+  note   = {\url{http://docs.celeryproject.org/en/latest/index.html}[Retrieved December 8, 2019]},
+  title  = {Celery Documentation},
   year   = {2019},
 }
 
