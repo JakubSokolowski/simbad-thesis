@@ -1,1 +1,50 @@
-\section{Configuration options}
+\chapter*{Configuration Options}\mbox{}\pdfbookmark[0]{Configuration Options}{Configuration Options.1}
+The Environment Variables below can be adjusted in \textit{docker.env} file, and will set in each container in docker-compse.yaml, where the path to docker.env is under the \textit{env\_file} key, as shown on the line \ref{line:env} in the listing \ref{list:env} below.
+\begin{lstlisting}[label=list:env,caption=Example of passing \textit{docker.env} file to the container, basicstyle=\footnotesize\ttfamily, escapechar=|, numbers=left]
+services:
+  pipeline:
+    image: jsokolowski/simbad-pipeline-server
+    container_name: simbad-pipeline-server
+    command: python entrypoint_api.py --port 8081 --debug
+    env_file:
+      - ./docker.env |\label{line:env}|
+    ports:
+      - "8081:8081"
+    volumes:
+      - ../data:/usr/data
+    depends_on:
+      - redis
+\end{lstlisting}
+\label{sec:conf-opts}
+\begin{description}
+    \item
+        [CELERY\_BROKER\_URL] - The \textit{URL} to \textit{Celery} message broker, default is the address of \textit{Redis} container: \emph{redis://redis:6379}
+    
+    \item 
+        [CELERY\_RESULT\_BACKEND] - The URL to database, where \textit{Celery} stores results, default is the address of \textit{Redis} container \emph{redis://redis:6379}
+    
+    \item 
+        [SIMBAD\_DATA\_PATH] - The root data path inside of container where data from all simulations is stored. This is also the path that the local folder should be mounted to, default is \emph{/usr/data}
+    
+    \item 
+        [SIMBAD\_ANALYZER\_HOST] - The address or name \textit{SimBaD-Analyzer} host, default is the host name of \textit{SimBaD-Analyzer-Server} container: \emph{simbad-analyzer}
+    
+    \item 
+        [SIMBAD\_ANALYZER\_PORT] - The port of the host machine where \textit{SimBaD-Analyzer} is running, default is \emph{5000} 
+    
+    \item 
+        [SIMBAD\_ANALYZER\_EXECUTOR] - The kind of executor \textit{SimBaD-Analyzer}, default is \textit{HTTP}, can be \textit{HTTP, SSH}
+    
+    \item 
+        [SIMBAD\_SSHFS\_PATH] - The path inside the host to mounted \textit{sshfs} drive
+    
+    \item 
+        [SIMBAD\_SSHFS\_SERVER] - The address of remote host to mount folder from
+    
+    \item 
+        [SIMBAD\_SSHFS\_USER] - The user to use for remote host login
+    
+    \item 
+        [SIMBAD\_SSHFS\_PASSWORD] - The user password for remote host login
+    
+\end{description}
