@@ -82,7 +82,7 @@
   year   = {2018},
 }
 
-@Misc{DockerfileIssue,
+@Misc{DockerHostInternal,
   author = {Docker},
   note   = {\url{https://docs.docker.com/engine/reference/builder/}[Retrieved December 8, 2019]},
   title  = {Github Issue concerning "host.docker.internal"},
@@ -166,7 +166,7 @@
   year   = {2019},
 }
 
-@Misc{RxjsObservable,
+@Misc{NgRx,
   author = {NgRx},
   note   = {\url{https://ngrx.io/docs}[Retrieved December 8, 2019]},
   title  = {NgRx Documentation},

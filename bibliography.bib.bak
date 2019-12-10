@@ -82,10 +82,10 @@
   year   = {2018},
 }
 
-@Misc{Dockerfile,
+@Misc{DockerHostInternal,
   author = {Docker},
   note   = {\url{https://docs.docker.com/engine/reference/builder/}[Retrieved December 8, 2019]},
-  title  = {Dockerfile Reference},
+  title  = {Github Issue concerning "host.docker.internal"},
   year   = {2019},
 }
 
@@ -254,13 +254,6 @@
   year   = {2019},
 }
 
-@Misc{RxJSSub,
-  author = {RxJS},
-  note   = {\url{https://rxjs-dev.firebaseapp.com/guide/subscription}[Retrieved December 8, 2019]},
-  title  = {Rxjs Documentation: Subscription},
-  year   = {2019},
-}
-
 @Misc{RxJSObservable,
   author = {RxJS},
   note   = {\url{https://rxjs-dev.firebaseapp.com/guide/observable}[Retrieved December 8, 2019]},
@@ -271,7 +264,7 @@
 @Misc{RxJSSource,
   author = {RxJS},
   note   = {\url{https://github.com/ReactiveX/rxjs}[Retrieved December 8, 2019]},
-  title  = {Rxjs Documentation: Operators},
+  title  = {Rxjs Source Code},
   year   = {2019},
 }
 
@@ -300,6 +293,20 @@
   author = {RxJS},
   note   = {\url{https://rxjs-dev.firebaseapp.com/guide/operators}[Retrieved December 8, 2019]},
   title  = {Rxjs Documentation: Operators},
+  year   = {2019},
+}
+
+@Misc{Dockerfile,
+  author = {Docker},
+  note   = {\url{https://docs.docker.com/engine/reference/builder/}[Retrieved December 8, 2019]},
+  title  = {Dockerfile Reference},
+  year   = {2019},
+}
+
+@Misc{RxJSSub,
+  author = {RxJS},
+  note   = {\url{https://rxjs-dev.firebaseapp.com/guide/subscription}[Retrieved December 8, 2019]},
+  title  = {Rxjs Documentation: Subscription},
   year   = {2019},
 }
 
